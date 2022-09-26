@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "501717507743",
+    "project_id": "egrammer-b4f0d",
+    "storage_bucket": "egrammer-b4f0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501717507743:android:db267d90d59250397cccaa",
+        "android_client_info": {
+          "package_name": "com.codex.etutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501717507743-dekg9anpqi8ipovcofmrsbt1itskoi6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_52fGRhxdRQw0lAatQvXoVkZ7WDoXOCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501717507743-dekg9anpqi8ipovcofmrsbt1itskoi6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
