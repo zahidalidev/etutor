@@ -12,7 +12,6 @@ import SubCategories from './app/screens/subCategories'
 import Questions from './app/screens/questions'
 
 import splashScreen from './assets/learnSplash.json'
-import { fillData } from './app/api/categories'
 // LogBox.ignoreAllLogs();
 
 const Stack = createDrawerNavigator()
@@ -21,7 +20,6 @@ export default function App() {
   const [isLoaded, setLoading] = useState(false)
 
   useEffect(() => {
-    fillData()
     const interval = setInterval(() => setLoading(true), 2000)
 
     return () => {

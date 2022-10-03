@@ -68,7 +68,7 @@ const HomeScreen = (props) => {
   const handleGetAllCategories = async () => {
     try {
       showLoading(true)
-      const { data } = await fetchAllCategories()
+      const data = await fetchAllCategories()
       setCategories(data)
     } catch (error) {
       console.log({ message: 'Categories not found' }, error)
