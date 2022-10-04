@@ -63,7 +63,7 @@ const Questions = (props) => {
   const handleGetQuestions = async (id) => {
     try {
       showLoading(true)
-      const { data } = await fetchQuestions(id)
+      const data = await fetchQuestions(id)
       setQuestions(data)
     } catch (error) {
       console.log({ message: 'Sub categories not found' }, error)

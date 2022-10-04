@@ -16,26 +16,24 @@ const SubCategories = (props) => {
   const [subCategories, setSubCategories] = useState([])
   const [loading, showLoading] = useState(false)
   const [currentCategory, setCurrentCategory] = useState({})
-  const [page, setPage] = useState(1)
 
   useEffect(() => {
     if (props.route.params?.category) {
       setCurrentCategory(props.route.params.category)
-      handleGetSubCategories(1, props.route.params.category.id)
+      handleGetSubCategories(props.route.params.category.id)
     }
 
     return () => {
-      setPage(1)
       setSubCategories([])
       setCurrentCategory({})
     }
   }, [props.route.params])
 
-  const handleGetSubCategories = async (currentPage = page, id) => {
+  const handleGetSubCategories = async (id) => {
     try {
       showLoading(true)
-      const { data } = await fetchSubCategories(currentPage, id)
-      setSubCategories(data.data)
+      const data = await fetchSubCategories(id)
+      setSubCategories(data)
     } catch (error) {
       console.log({ message: 'Sub categories not found' }, error)
     }
@@ -47,19 +45,6 @@ const SubCategories = (props) => {
       subCategory,
       currentCategory,
     })
-  }
-
-  const getMoreSubCategories = async () => {
-    showLoading(true)
-    const newPage = page + 1
-    setPage(newPage)
-    try {
-      const { data } = await fetchSubCategories(newPage, currentCategory?.id)
-      setSubCategories([...subCategories, ...data.data])
-    } catch (error) {
-      console.log({ message: 'Sub categories not found' }, error)
-    }
-    showLoading(false)
   }
 
   return (
@@ -86,7 +71,6 @@ const SubCategories = (props) => {
           style={{ marginTop: RFPercentage(2) }}
           data={subCategories}
           renderItem={({ item }) => <SubCategoryCard item={item} handleCategory={handleCategory} />}
-          onEndReached={getMoreSubCategories}
         />
       </View>
       <View style={styles.homeBanner}>

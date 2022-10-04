@@ -1,5 +1,5 @@
 node_modules/
-# app/config/firebase.js
+app/config/firebase.js
 .env
 .expo/
 dist/
