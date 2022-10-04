@@ -122,7 +122,7 @@ const Questions = (props) => {
   const handleAgainTest = () => {
     setCurrentQuestion(0)
     setShowResult(false)
-    // handleGetQuestions(props.route.params?.subCategory.id)
+    handleGetQuestions(props.route.params?.subCategory.id)
   }
 
   const handleBack = () => {
