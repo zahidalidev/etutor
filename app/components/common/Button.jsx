@@ -1,6 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { RFPercentage } from "react-native-responsive-fontsize";
-import { Colors } from "../../config/theme";
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { RFPercentage } from 'react-native-responsive-fontsize'
+import { Colors } from '../../config/theme'
 
 const Button = ({
   name,
@@ -11,29 +11,25 @@ const Button = ({
   fontSize = RFPercentage(2.3),
   ButtonStyle,
   color = Colors.white,
-  disable = false
+  disable = false,
 }) => (
   <TouchableOpacity
     disabled={disable}
     activeOpacity={0.5}
     onPress={handleSubmit}
-    style={[
-      styles.buttonContainer,
-      { width, height, backgroundColor },
-      ButtonStyle,
-    ]}
+    style={[styles.buttonContainer, { width, height, backgroundColor }, ButtonStyle]}
   >
-    <Text style={{ fontSize, color, }}>{name}</Text>
+    <Text style={{ fontSize, color }}>{name}</Text>
   </TouchableOpacity>
-);
+)
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 50,
     elevation: 2,
   },
-});
+})
 
-export default Button;
+export default Button

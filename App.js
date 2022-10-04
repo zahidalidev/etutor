@@ -11,6 +11,7 @@ import SubCategories from './app/screens/subCategories'
 import Questions from './app/screens/questions'
 
 import splashScreen from './assets/learnSplash.json'
+
 LogBox.ignoreAllLogs();
 
 const Stack = createDrawerNavigator()

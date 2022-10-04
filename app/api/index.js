@@ -1,13 +1,15 @@
-import axios from "axios";
+import { getAuth } from 'firebase/auth'
+import { getDatabase } from 'firebase/database'
+import { getFirestore, initializeFirestore } from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
 
-const BASE_API_END_POINT = 'https://api.englishsentences.in/api'
+import firebaseConfig from '../config/firebase'
 
-const instance = axios.create({
-  baseURL: BASE_API_END_POINT,
-  timeout: 150000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
+const app = initializeApp(firebaseConfig)
+initializeFirestore(app, { useFetchStraems: false, experimentalForceLongPolling: true })
 
-export default instance
+const firebaseAuth = getAuth(app)
+const firebaseDatabase = getDatabase(app)
+const firebaseFirestore = getFirestore(app)
+
+export { firebaseAuth, firebaseDatabase, firebaseFirestore }

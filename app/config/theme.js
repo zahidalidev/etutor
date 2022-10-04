@@ -11,8 +11,8 @@ export const Colors = {
   lightWhite: '#EFF7F6',
   lightGreen: '#B2F7EF',
   lightBlue: '#90E3F4',
-  black: '#011c47'
-};
+  black: '#011c47',
+}
 
 export const toastTheme = {
   space: [0, 4, 8, 12, 16, 20, 24, 32, 40, 48],
@@ -38,4 +38,4 @@ export const toastTheme = {
     accentColor: '#e5ea59',
     iconName: 'info',
   },
-};
+}

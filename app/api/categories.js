@@ -1,6 +1,5 @@
 import { collection, getDocs, where, query } from 'firebase/firestore'
-import { firebaseFirestore } from '../config/firebase'
-
+import { firebaseFirestore } from '.'
 
 export const fetchAllCategories = async () => {
   const snapshot = await getDocs(collection(firebaseFirestore, 'categories'))

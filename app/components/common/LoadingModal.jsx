@@ -1,10 +1,10 @@
-import React from "react";
-import { Modal, View, ActivityIndicator, Dimensions } from "react-native";
-import { RFPercentage } from "react-native-responsive-fontsize";
+import React from 'react'
+import { Modal, View, ActivityIndicator, Dimensions } from 'react-native'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
-import { Colors } from "../../config/theme";
+import { Colors } from '../../config/theme'
 
-const windowHeight = Dimensions.get("window").height;
+const windowHeight = Dimensions.get('window').height
 
 const LoadingModal = ({ show, transparent = false }) => {
   return (
@@ -13,19 +13,19 @@ const LoadingModal = ({ show, transparent = false }) => {
       transparent={true}
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
         zIndex: 100,
       }}
     >
       <View
         style={{
           marginTop: windowHeight / 2 - 50,
-          width: "100%",
+          width: '100%',
           height: RFPercentage(10),
           borderRadius: 10,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <View
@@ -34,16 +34,16 @@ const LoadingModal = ({ show, transparent = false }) => {
             width: RFPercentage(10),
             height: RFPercentage(10),
             borderRadius: 10,
-            backgroundColor: transparent ? "#ffffff00" : Colors.white,
-            justifyContent: "center",
-            alignItems: "center",
+            backgroundColor: transparent ? '#ffffff00' : Colors.white,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <ActivityIndicator size={RFPercentage(5)} color={Colors.primary} />
         </View>
       </View>
     </Modal>
-  );
-};
+  )
+}
 
-export default LoadingModal;
+export default LoadingModal
