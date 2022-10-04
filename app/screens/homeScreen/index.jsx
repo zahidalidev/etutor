@@ -38,7 +38,7 @@ const HomeScreen = (props) => {
         firebase_token: token,
         device_id: Constants.installationId,
       }
-      const { data } = await saveNotificationToken(body)
+      await saveNotificationToken(body)
     } catch (error) {
       console.log(error)
     }
@@ -86,20 +86,17 @@ const HomeScreen = (props) => {
     <>
       <View style={styles.container}>
         <LoadingModal show={loading} />
-        <StatusBar backgroundColor={Colors.primary} style='light' />
-        <View style={styles.header}></View>
-        <View style={styles.bodyContainer}>
-          <View style={styles.paginationHeading}>
-            <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
-              <MaterialIcons
-                style={styles.backIcon}
-                name='menu-open'
-                size={RFPercentage(4)}
-                color={Colors.primary}
-              />
-            </TouchableOpacity>
+        <View style={styles.header}>
+          <StatusBar translucent backgroundColor='transparent'  style='light' />
+          <View style={styles.headerCol1} ></View>
+          <View style={styles.headerCol2} ></View>
+          <View style={styles.headerCol3} ></View>
+          <View style={styles.headerInnerBox}>
             <Text style={styles.heading}>Categories</Text>
+            <Text style={styles.subHeading}>Test to learn!</Text>
           </View>
+        </View>
+        <View style={styles.bodyContainer}>
           <FlatList
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             style={{ marginTop: RFPercentage(2), marginBottom: RFPercentage(1), marginLeft: '5%' }}

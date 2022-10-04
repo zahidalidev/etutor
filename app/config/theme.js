@@ -7,6 +7,10 @@ export const Colors = {
   darkgrey: "#606060",
   danger: "#ce5858",
   green: "#7ed6b0",
+  lightRed: '#F7D6E0',
+  lightWhite: '#EFF7F6',
+  lightGreen: '#B2F7EF',
+  lightBlue: '#90E3F4'
 };
 
 export const toastTheme = {

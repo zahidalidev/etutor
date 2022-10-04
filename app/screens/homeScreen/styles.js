@@ -14,32 +14,54 @@ const styles = StyleSheet.create({
 
   header: {
     width: '100%',
-    backgroundColor: Colors.primary,
-    height: RFPercentage(11),
+    height: RFPercentage(40),
+    flexDirection: 'row'
+  },
+
+  headerCol1: {
+    backgroundColor: Colors.lightRed,
+    width: '40%',
+  },
+
+  headerCol2: {
+    backgroundColor: Colors.lightGreen,
+    width: '40%',
+
+  },
+
+  headerCol3: {
+    backgroundColor: Colors.lightBlue,
+    width: '20%',
+
   },
 
   bodyContainer: {
     width: '100%',
     backgroundColor: Colors.white,
-    borderTopEndRadius: RFPercentage(3.7),
-    borderTopStartRadius: RFPercentage(3.7),
-    marginTop: RFPercentage(-4),
   },
 
-  paginationHeading: {
-    paddingLeft: RFPercentage(3.2),
-    paddingTop: RFPercentage(4),
-    paddingBottom: RFPercentage(2),
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '57%',
-    justifyContent: 'space-between'
+  headerInnerBox: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    backgroundColor: Colors.lightWhite,
+    width: '80%',
+    height: RFPercentage(26),
+    borderTopRightRadius: 5,
+    justifyContent: 'center',
+    paddingLeft: RFPercentage(5)
   },
 
   heading: {
-    fontSize: RFPercentage(3.5),
+    fontSize: RFPercentage(4),
     fontWeight: '600',
     color: Colors.primary
+  },
+
+  subHeading: {
+    fontSize: RFPercentage(5),
+    color: Colors.primary,
+    fontWeight: '300',
   },
 
   homeBanner: {
