@@ -89,7 +89,6 @@ const Questions = (props) => {
   }
 
   const handleNext = () => {
-    console.log(currentQuestion)
     if (currentQuestion === 3 && !showAd) return setShowAd(true)
     setShowAd(false)
     if (currentQuestion < 9) {
@@ -123,7 +122,7 @@ const Questions = (props) => {
   const handleAgainTest = () => {
     setCurrentQuestion(0)
     setShowResult(false)
-    handleGetQuestions(props.route.params?.subCategory.id)
+    // handleGetQuestions(props.route.params?.subCategory.id)
   }
 
   const handleBack = () => {
@@ -179,7 +178,7 @@ const Questions = (props) => {
                     ? ' (correct)'
                     : ''
                 }`}
-                color={Colors.primary}
+                color={Colors.black}
                 height={RFPercentage(6)}
                 ButtonStyle={{ marginBottom: RFPercentage(2) }}
                 fontSize={RFPercentage(2.7)}

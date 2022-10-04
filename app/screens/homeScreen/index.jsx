@@ -92,21 +92,20 @@ const HomeScreen = (props) => {
           <View style={styles.headerCol2} ></View>
           <View style={styles.headerCol3} ></View>
           <View style={styles.headerInnerBox}>
-            <Text style={styles.heading}>Categories</Text>
+            <Text style={styles.heading}>eTutor</Text>
             <Text style={styles.subHeading}>Test to learn!</Text>
           </View>
         </View>
-        <View style={styles.bodyContainer}>
-          <FlatList
-            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-            style={{ marginTop: RFPercentage(2), marginBottom: RFPercentage(1), marginLeft: '5%' }}
-            data={categories}
-            numColumns={2}
-            renderItem={({ item, index }) => (
-              <CategoryCard item={item} handleCategory={handleCategory} index={index} />
-            )}
-          />
-        </View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+          style={styles.bodyContainer}
+          data={categories}
+          numColumns={2}
+          renderItem={({ item, index }) => (
+            <CategoryCard item={item} handleCategory={handleCategory} index={index} />
+          )}
+        />
       </View>
       <View style={styles.homeBanner}>
         {/* <BannerAd

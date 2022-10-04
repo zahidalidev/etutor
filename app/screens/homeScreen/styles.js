@@ -21,23 +21,21 @@ const styles = StyleSheet.create({
   headerCol1: {
     backgroundColor: Colors.lightRed,
     width: '40%',
+    height: RFPercentage(40),
   },
 
   headerCol2: {
     backgroundColor: Colors.lightGreen,
     width: '40%',
-
   },
 
   headerCol3: {
     backgroundColor: Colors.lightBlue,
     width: '20%',
-
   },
 
   bodyContainer: {
-    width: '100%',
-    backgroundColor: Colors.white,
+    marginTop: RFPercentage(-5),
   },
 
   headerInnerBox: {
@@ -46,7 +44,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: Colors.lightWhite,
     width: '80%',
-    height: RFPercentage(26),
+    height: RFPercentage(29),
     borderTopRightRadius: 5,
     justifyContent: 'center',
     paddingLeft: RFPercentage(5)
@@ -55,12 +53,13 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: RFPercentage(4),
     fontWeight: '600',
-    color: Colors.primary
+    color: Colors.black,
+    marginTop: RFPercentage(-2),
   },
 
   subHeading: {
     fontSize: RFPercentage(5),
-    color: Colors.primary,
+    color: Colors.black,
     fontWeight: '300',
   },
 

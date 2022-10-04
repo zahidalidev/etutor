@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
   categName: {
     fontSize: RFPercentage(2.8),
-    color: Colors.primary,
+    color: Colors.black,
   },
 })
 
