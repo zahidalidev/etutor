@@ -1,13 +1,10 @@
-// import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
+import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { Text, View, StatusBar, FlatList, RefreshControl, TouchableOpacity } from 'react-native'
-import { RFPercentage } from 'react-native-responsive-fontsize'
 import * as Notifications from 'expo-notifications'
 import Constants from 'expo-constants'
-import { MaterialIcons } from '@expo/vector-icons'
 
 import LoadingModal from '../../components/common/LoadingModal'
-import { Colors } from '../../config/theme'
 import CategoryCard from '../../components/CategoryCard'
 import getPushNotificationsToken from '../../utils/getNotificationToken'
 import { fetchAllCategories } from '../../api/categories'
@@ -108,13 +105,13 @@ const HomeScreen = (props) => {
         />
       </View>
       <View style={styles.homeBanner}>
-        {/* <BannerAd
-          unitId={'ca-app-pub-3940256099942544/6300978111'}
+        <BannerAd
+          unitId={questionBannerId}
           size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
           }}
-        /> */}
+        />
       </View>
     </>
   )
