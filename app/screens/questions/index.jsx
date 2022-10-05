@@ -216,22 +216,13 @@ const Questions = (props) => {
           </Animated.View>
         )}
       </View>
-      <View style={styles.homeBanner}>
-        <BannerAd
-          unitId={questionBannerId}
-          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-          requestOptions={{
-            requestNonPersonalizedAdsOnly: true,
-          }}
-        />
-      </View>
     </>
   )
 
   return (
     <View style={styles.container}>
       <LoadingModal show={loading} />
-      <StatusBar backgroundColor={Colors.primary} style='light' />
+      <StatusBar backgroundColor='transparent' translucent style='light' />
       <View style={styles.header}>
         <View style={styles.pageNavigation}>
           <TouchableOpacity style={styles.backIcon} onPress={handleBack}>
@@ -280,6 +271,15 @@ const Questions = (props) => {
           handleMoreExercises={handleBack}
         />
       )}
+       <View style={styles.homeBanner}>
+        <BannerAd
+          unitId={questionBannerId}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+        />
+      </View>
     </View>
   )
 }

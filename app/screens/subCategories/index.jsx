@@ -51,7 +51,7 @@ const SubCategories = (props) => {
     <>
       <View style={styles.container}>
         <LoadingModal show={loading} />
-        <StatusBar backgroundColor={Colors.primary} style='light' />
+        <StatusBar backgroundColor='transparent' translucent style='light' />
         <View style={styles.header}></View>
         <View style={styles.pageNavigation}>
           <View style={styles.paginationHeading}>

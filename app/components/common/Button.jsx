@@ -15,7 +15,7 @@ const Button = ({
 }) => (
   <TouchableOpacity
     disabled={disable}
-    activeOpacity={0.5}
+    activeOpacity={0.8}
     onPress={handleSubmit}
     style={[styles.buttonContainer, { width, height, backgroundColor }, ButtonStyle]}
   >

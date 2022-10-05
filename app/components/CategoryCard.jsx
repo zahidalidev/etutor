@@ -5,7 +5,7 @@ import { Colors } from '../config/theme'
 const CategoryCard = ({ item, handleCategory }) => (
   <TouchableOpacity
     key={item.name}
-    activeOpacity={0.6}
+    activeOpacity={0.9}
     onPress={() => handleCategory(item)}
     style={[styles.categContaienr]}
   >

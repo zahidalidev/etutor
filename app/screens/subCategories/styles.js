@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     backgroundColor: Colors.primary,
-    height: RFPercentage(11),
+    height: RFPercentage(14),
   },
 
   pageNavigation: {
