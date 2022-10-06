@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
-import { Text, View, StatusBar, FlatList, TouchableOpacity } from 'react-native'
-import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
+import { RFPercentage } from 'react-native-responsive-fontsize'
+import { Text, View, StatusBar, FlatList, TouchableOpacity } from 'react-native'
+import { useEffect, useState } from 'react'
 
-import LoadingModal from '../../components/common/LoadingModal'
+import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
 import { Colors } from '../../config/theme'
 import { fetchSubCategories } from '../../api/categories'
-import SubCategoryCard from '../../components/SubCategoryCard'
-import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
+import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
+import SubCategoryCard from '../../components/SubCategoryCard'
 
 import styles from './styles'
 

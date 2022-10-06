@@ -1,17 +1,17 @@
 import { Audio } from 'expo-av'
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
-import { useEffect, useState } from 'react'
-import { Text, View, StatusBar, TouchableOpacity, Vibration, Animated } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
+import { Text, View, StatusBar, TouchableOpacity, Vibration, Animated } from 'react-native'
+import { useEffect, useState } from 'react'
 
-import Button from '../../components/common/Button'
-import LoadingModal from '../../components/common/LoadingModal'
+import AnimatedButton from '../../components/AnimatedButton'
 import { Colors } from '../../config/theme'
 import { fetchQuestions } from '../../api/categories'
+import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
-import Result from '../result'
 import Quiz from '../../components/Quiz'
+import Result from '../result'
 
 import styles from './styles'
 import successBell from '../../../assets/sounds/success_bell-6776.mp3'
@@ -168,23 +168,12 @@ const Questions = (props) => {
                 }}
               />
             </View>
-            <View style={styles.nextButton}>
-              <Animated.View
-                style={{
-                  opacity: opacity,
-                  transform: [
-                    { scale: opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1] }) },
-                  ],
-                }}
-              >
-                <Button
-                  name={currentQuestion === 9 ? 'FINISH' : 'NEXT'}
-                  handleSubmit={handleNext}
-                  height={RFPercentage(6)}
-                  fontSize={RFPercentage(2.7)}
-                />
-              </Animated.View>
-            </View>
+            <AnimatedButton
+              showNextButton
+              opacity={opacity}
+              currentQuestion={currentQuestion}
+              handleNext={handleNext}
+            />
           </>
         )
       ) : (
