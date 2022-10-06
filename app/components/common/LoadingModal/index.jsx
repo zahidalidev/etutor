@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, View, ActivityIndicator, Dimensions } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-import { Colors } from '../../config/theme'
+import { Colors } from '../../../config/theme'
 
 const windowHeight = Dimensions.get('window').height
 

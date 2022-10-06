@@ -1,6 +1,8 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
-import { Colors } from '../../config/theme'
+
+import { Colors } from '../../../config/theme'
+import styles from './styles'
 
 const Button = ({
   name,
@@ -22,14 +24,5 @@ const Button = ({
     <Text style={{ fontSize, color }}>{name}</Text>
   </TouchableOpacity>
 )
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    elevation: 2,
-  },
-})
 
 export default Button
