@@ -1,8 +1,8 @@
 import { Animated, Text, View } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-import { Colors } from '../../config/theme'
 import Button from '../common/Button'
+import { Colors } from '../../config/theme'
 import ProgressBar from '../ProgressBar'
 
 import styles from './styles'
