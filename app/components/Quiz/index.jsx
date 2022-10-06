@@ -1,9 +1,9 @@
 import { Animated, Text, View } from 'react-native'
-import { ProgressBar } from 'react-native-paper'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 import { Colors } from '../../config/theme'
 import Button from '../common/Button'
+import ProgressBar from '../ProgressBar'
 
 import styles from './styles'
 
@@ -17,33 +17,7 @@ const Quiz = ({
 }) => (
   <>
     <View style={styles.bodyContainer}>
-      <View style={styles.progressBarContainer}>
-        <View style={styles.progressCount}>
-          {[...Array(10).keys()].map((num) => (
-            <View
-              key={num.toString()}
-              style={[
-                styles.numContainer,
-                {
-                  backgroundColor:
-                    questions[num]?.guess === 'yes'
-                      ? Colors.green
-                      : questions[num]?.guess === 'no'
-                      ? Colors.danger
-                      : Colors.lightGrey,
-                },
-              ]}
-            >
-              <Text>{num + 1}</Text>
-            </View>
-          ))}
-        </View>
-        <ProgressBar
-          progress={currentQuestion * 0.1 + 0.04}
-          style={styles.progressBar}
-          color={Colors.green}
-        />
-      </View>
+      <ProgressBar questions={questions} currentQuestion={currentQuestion} />
       <View style={styles.questionContainer}>
         <Text style={styles.questionHeading}>Choose the correct answer</Text>
         <Text style={styles.questionDescription}>{questions[currentQuestion]?.question}</Text>
