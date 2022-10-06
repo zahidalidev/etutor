@@ -71,7 +71,7 @@ const Questions = (props) => {
     showLoading(false)
   }
 
-  const handleCheckAnser = (answerIndex) => {
+  const handleCheckAnswer = (answerIndex) => {
     const tempQuestion = [...questions]
     tempQuestion[currentQuestion].sub_quiz_options[answerIndex].currentAnswer =
       tempQuestion[currentQuestion].sub_quiz_options[answerIndex].is_correct === 1 ? 'yes' : 'no'
@@ -154,7 +154,7 @@ const Questions = (props) => {
             currentQuestion={currentQuestion}
             showNextButton={showNextButton}
             opacity={opacity}
-            handleCheckAnser={handleCheckAnser}
+            handleCheckAnswer={handleCheckAnswer}
             handleNext={handleNext}
           />
         ) : (

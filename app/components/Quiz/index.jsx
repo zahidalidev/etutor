@@ -12,7 +12,7 @@ const Quiz = ({
   currentQuestion,
   showNextButton,
   opacity,
-  handleCheckAnser,
+  handleCheckAnswer,
   handleNext,
 }) => (
   <>
@@ -25,7 +25,7 @@ const Quiz = ({
           {questions[currentQuestion]?.sub_quiz_options.map((option, index) => (
             <Button
               key={option.option_value}
-              handleSubmit={() => handleCheckAnser(index)}
+              handleSubmit={() => handleCheckAnswer(index)}
               name={`${option.option_value}${
                 option.is_correct === 1 && questions[currentQuestion]?.optionDisable
                   ? ' (correct)'
