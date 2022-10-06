@@ -33,65 +33,6 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
 
-  progressBarContainer: {
-    marginTop: RFPercentage(5),
-    width: '90%',
-  },
-
-  progressCount: {
-    position: 'relative',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    zIndex: 10,
-    marginBottom: -16,
-  },
-
-  numContainer: {
-    width: RFPercentage(3),
-    height: RFPercentage(3),
-    borderRadius: RFPercentage(3),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  progressBar: {
-    height: 8,
-    backgroundColor: Colors.lightGrey,
-    borderRadius: 10,
-  },
-
-  bodyContainer: {
-    width: '100%',
-    backgroundColor: Colors.white,
-    borderTopEndRadius: RFPercentage(3.7),
-    borderTopStartRadius: RFPercentage(3.7),
-    marginTop: RFPercentage(-4),
-    alignItems: 'center',
-  },
-
-  questionContainer: {
-    width: '90%',
-    flexDirection: 'column',
-    marginTop: RFPercentage(7),
-  },
-
-  questionHeading: {
-    fontSize: RFPercentage(2.7),
-    fontWeight: '500',
-  },
-
-  questionDescription: {
-    marginTop: RFPercentage(2),
-    fontSize: RFPercentage(2.5),
-  },
-
-  questionOption: {
-    marginTop: RFPercentage(5),
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   nextButton: {
     position: 'absolute',
     bottom: RFPercentage(13),

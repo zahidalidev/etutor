@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react'
 import { Text, View, StatusBar, TouchableOpacity, Vibration, Animated } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
-import { ProgressBar } from 'react-native-paper'
 
 import Button from '../../components/common/Button'
 import LoadingModal from '../../components/common/LoadingModal'
 import { Colors } from '../../config/theme'
 import { fetchQuestions } from '../../api/categories'
 import { questionBannerId } from '../../config/adIds'
+import Result from '../result'
+import Quiz from '../../components/Quiz'
 
 import styles from './styles'
-import Result from '../result'
 import successBell from '../../../assets/sounds/success_bell-6776.mp3'
 
 const Questions = (props) => {
@@ -131,93 +131,9 @@ const Questions = (props) => {
     setQuestions([])
     setShowAd(false)
     props.navigation.navigate('SubCategories', {
-      category: currentCategory
+      category: currentCategory,
     })
   }
-
-  const QuestionComponent = () => (
-    <>
-      <View style={styles.bodyContainer}>
-        <View style={styles.progressBarContainer}>
-          <View style={styles.progressCount}>
-            {[...Array(10).keys()].map((num) => (
-              <View
-                key={num.toString()}
-                style={[
-                  styles.numContainer,
-                  {
-                    backgroundColor:
-                      questions[num]?.guess === 'yes'
-                        ? Colors.green
-                        : questions[num]?.guess === 'no'
-                        ? Colors.danger
-                        : Colors.lightGrey,
-                  },
-                ]}
-              >
-                <Text>{num + 1}</Text>
-              </View>
-            ))}
-          </View>
-          <ProgressBar
-            progress={currentQuestion * 0.1 + 0.04}
-            style={styles.progressBar}
-            color={Colors.green}
-          />
-        </View>
-        <View style={styles.questionContainer}>
-          <Text style={styles.questionHeading}>Choose the correct answer</Text>
-          <Text style={styles.questionDescription}>{questions[currentQuestion]?.question}</Text>
-          <View style={styles.questionOption}>
-            {questions[currentQuestion]?.sub_quiz_options.map((option, index) => (
-              <Button
-                key={option.option_value}
-                handleSubmit={() => handleCheckAnser(index)}
-                name={`${option.option_value}${
-                  option.is_correct === 1 && questions[currentQuestion]?.optionDisable
-                    ? ' (correct)'
-                    : ''
-                }`}
-                color={Colors.black}
-                height={RFPercentage(6)}
-                ButtonStyle={{ marginBottom: RFPercentage(2) }}
-                fontSize={RFPercentage(2.7)}
-                width='90%'
-                disable={questions[currentQuestion]?.optionDisable}
-                backgroundColor={
-                  option.currentAnswer === 'yes' ||
-                  (option.is_correct === 1 && questions[currentQuestion]?.optionDisable)
-                    ? Colors.green
-                    : option.currentAnswer === 'no'
-                    ? Colors.danger
-                    : Colors.lightGrey
-                }
-              />
-            ))}
-          </View>
-        </View>
-      </View>
-      <View style={styles.nextButton}>
-        {showNextButton && (
-          <Animated.View
-            style={{
-              opacity: opacity,
-              transform: [
-                { scale: opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1] }) },
-              ],
-            }}
-          >
-            <Button
-              name={currentQuestion === 9 ? 'FINISH' : 'NEXT'}
-              handleSubmit={handleNext}
-              height={RFPercentage(6)}
-              fontSize={RFPercentage(2.7)}
-            />
-          </Animated.View>
-        )}
-      </View>
-    </>
-  )
 
   return (
     <View style={styles.container}>
@@ -233,7 +149,14 @@ const Questions = (props) => {
       </View>
       {!showResult ? (
         !showAd ? (
-          <QuestionComponent />
+          <Quiz
+            questions={questions}
+            currentQuestion={currentQuestion}
+            showNextButton={showNextButton}
+            opacity={opacity}
+            handleCheckAnser={handleCheckAnser}
+            handleNext={handleNext}
+          />
         ) : (
           <>
             <View style={styles.rectangleAd}>
@@ -271,7 +194,7 @@ const Questions = (props) => {
           handleMoreExercises={handleBack}
         />
       )}
-       <View style={styles.homeBanner}>
+      <View style={styles.homeBanner}>
         <BannerAd
           unitId={questionBannerId}
           size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
