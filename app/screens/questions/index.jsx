@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 
 import AnimatedButton from '../../components/AnimatedButton'
 import { Colors } from '../../config/theme'
-import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
 import Quiz from '../../components/Quiz'
 import Result from '../result'
@@ -18,7 +17,6 @@ import successBell from '../../../assets/sounds/success_bell-6776.mp3'
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([])
-  const [loading, showLoading] = useState(false)
   const [currentSubCategory, setSubCurrentCategory] = useState({})
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [showNextButton, setShowNextButton] = useState(false)
@@ -131,7 +129,6 @@ const Questions = (props) => {
 
   return (
     <View style={styles.container}>
-      <LoadingModal show={loading} />
       <StatusBar backgroundColor='transparent' translucent style='light' />
       <View style={styles.header}>
         <View style={styles.pageNavigation}>

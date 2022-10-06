@@ -20,16 +20,17 @@ import logo from '../../../assets/logo.png'
 
 const HomeScreen = (props) => {
   const [loading, showLoading] = useState(false)
+  const [backgroundLoading, setBackgroundLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [notification, setNotification] = useState()
   const notificationListener = useRef({})
   const responseListener = useRef({})
   const dispatch = useDispatch()
-  const categories = useSelector(state => state.categories)
+  const categories = useSelector((state) => state.categories)
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
-    if(categories.length === 0) {
+    if (categories.length === 0) {
       handleGetAllCategories()
     }
     setRefreshing(false)
@@ -51,13 +52,13 @@ const HomeScreen = (props) => {
   useEffect(() => {
     getNotificationToken()
     listenPushNotification()
-    if(categories.length === 0) {
+    if (categories.length === 0) {
       handleGetAllCategories()
     }
   }, [])
 
   useEffect(() => {
-    if(categories.length !== 0) {
+    if (categories.length !== 0) {
       handleGetSubCategories()
     }
   }, [categories])
@@ -90,28 +91,30 @@ const HomeScreen = (props) => {
 
   const handleCategory = (category) => {
     props.navigation.navigate('SubCategories', {
-      category,
+      category, backgroundLoading
     })
   }
 
   const handleGetSubCategories = async () => {
     try {
-      categories.forEach(async({ id, title }) => {
+      setBackgroundLoading(true)
+      for (const { id, title } of categories) {
         const data = await fetchSubCategories(id)
         dispatch(ADD_SUB_CATEGORIES({ title, data }))
         await handleGetQuestions(data)
-      })
+      }
     } catch (error) {
       console.log({ message: 'Sub categories not found' }, error)
     }
+    setBackgroundLoading(false)
   }
 
   const handleGetQuestions = async (subCategories) => {
     try {
-      subCategories.forEach(async({ id, title }) => {
+      for (const { id, title } of subCategories) {
         const data = await fetchQuestions(id)
         dispatch(ADD_QUESTIONS({ title, data }))
-      })
+      }
     } catch (error) {
       console.log({ message: 'Questions not found' }, error)
     }
@@ -123,9 +126,9 @@ const HomeScreen = (props) => {
         <LoadingModal show={loading} />
         <View style={styles.header}>
           <StatusBar translucent backgroundColor='transparent' style='light' />
-          <View style={styles.headerCol1} ></View>
-          <View style={styles.headerCol2} ></View>
-          <View style={styles.headerCol3} ></View>
+          <View style={styles.headerCol1}></View>
+          <View style={styles.headerCol2}></View>
+          <View style={styles.headerCol3}></View>
           <View style={styles.headerInnerBox}>
             <Image style={styles.logo} source={logo} />
             <Text style={styles.subHeading}>Test to learn!</Text>

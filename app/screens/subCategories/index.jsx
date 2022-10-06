@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
 import { Colors } from '../../config/theme'
+import { fetchSubCategories } from '../../api/categories'
 import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
 import SubCategoryCard from '../../components/SubCategoryCard'
@@ -14,14 +15,17 @@ import styles from './styles'
 
 const SubCategories = (props) => {
   const [subCategories, setSubCategories] = useState([])
-  const [loading, showLoading] = useState(false)
   const [currentCategory, setCurrentCategory] = useState({})
   const allSubCategories = useSelector(state => state.subCategories)
+  const [loading, showLoading] = useState(false)
 
   useEffect(() => {
     if (props.route.params?.category) {
       setCurrentCategory(props.route.params.category)
       handleGetSubCategories(props.route.params.category.title)
+
+      if (props.route.params.backgroundLoading)
+        handleFetchSubCategories(props.route.params.category.id)
     }
 
     return () => {
@@ -34,10 +38,22 @@ const SubCategories = (props) => {
     setSubCategories(allSubCategories[title])
   }
 
+  const handleFetchSubCategories = async(id) => {
+    try {
+      showLoading(true)
+      const data = await fetchSubCategories(id)
+      setSubCategories(data)
+    } catch (error) {
+      console.log({ message: 'Sub categories not found' }, error)
+    }
+    showLoading(false)
+  }
+
   const handleCategory = (subCategory) => {
     props.navigation.navigate('Questions', {
       subCategory,
       currentCategory,
+      backgroundLoading: props.route.params.backgroundLoading
     })
   }
 
