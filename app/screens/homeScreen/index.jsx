@@ -1,8 +1,8 @@
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
-import { useEffect, useState, useCallback, useRef } from 'react'
-import { Text, View, StatusBar, FlatList, RefreshControl, TouchableOpacity } from 'react-native'
-import * as Notifications from 'expo-notifications'
 import Constants from 'expo-constants'
+import { useEffect, useState, useCallback, useRef } from 'react'
+import { Text, View, StatusBar, FlatList, RefreshControl, Image } from 'react-native'
+import * as Notifications from 'expo-notifications'
 
 import LoadingModal from '../../components/common/LoadingModal'
 import CategoryCard from '../../components/CategoryCard'
@@ -12,6 +12,7 @@ import { saveNotificationToken } from '../../api/token'
 import { questionBannerId } from '../../config/adIds'
 
 import styles from './styles'
+import logo from '../../../assets/logo.png'
 
 const HomeScreen = (props) => {
   const [categories, setCategories] = useState([])
@@ -89,7 +90,7 @@ const HomeScreen = (props) => {
           <View style={styles.headerCol2} ></View>
           <View style={styles.headerCol3} ></View>
           <View style={styles.headerInnerBox}>
-            <Text style={styles.heading}>eTutor</Text>
+            <Image style={styles.logo} source={logo} />
             <Text style={styles.subHeading}>Test to learn!</Text>
           </View>
         </View>

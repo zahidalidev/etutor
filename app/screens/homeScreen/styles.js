@@ -47,14 +47,16 @@ const styles = StyleSheet.create({
     height: RFPercentage(29),
     borderTopRightRadius: 5,
     justifyContent: 'center',
-    paddingLeft: RFPercentage(5)
+    paddingLeft: RFPercentage(5),
   },
 
-  heading: {
-    fontSize: RFPercentage(4),
-    fontWeight: '600',
+  logo: {
+    height: RFPercentage(5),
+    width: RFPercentage(16),
+    resizeMode: 'contain',
     color: Colors.black,
     marginTop: RFPercentage(-2),
+    alignSelf: 'flex-start'
   },
 
   subHeading: {
