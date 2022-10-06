@@ -1,23 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
-import { Dimensions } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-
-import { Colors } from '../config/theme'
 
 const windowWidth = Dimensions.get('window').width
 
-const SubCategoryCard = ({ item, handleCategory }) => (
-  <TouchableOpacity
-    key={item.name}
-    activeOpacity={0.9}
-    onPress={() => handleCategory(item)}
-    style={styles.categContaienr}
-  >
-    <Text style={styles.categName}>{item.title}</Text>
-    <FontAwesome name='chevron-right' size={RFPercentage(2)} />
-  </TouchableOpacity>
-)
+import Colors from '../../config/theme'
 
 const styles = StyleSheet.create({
   categContaienr: {
@@ -47,4 +33,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default SubCategoryCard
+export default styles
