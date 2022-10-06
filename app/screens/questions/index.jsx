@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 
 import AnimatedButton from '../../components/AnimatedButton'
 import { Colors } from '../../config/theme'
-import { fetchQuestions } from '../../api/categories'
 import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
 import Quiz from '../../components/Quiz'
@@ -48,14 +47,8 @@ const Questions = (props) => {
     }
   }, [props.route.params])
 
-  const handleGetQuestions = async (title) => {
-    try {
-      showLoading(true)
-      setQuestions(allQuestions[title])
-    } catch (error) {
-      console.log({ message: 'Sub categories not found' }, error)
-    }
-    showLoading(false)
+  const handleGetQuestions = (title) => {
+    setQuestions(allQuestions[title])
   }
 
   const playSound = async () => {

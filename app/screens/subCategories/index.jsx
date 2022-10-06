@@ -30,14 +30,8 @@ const SubCategories = (props) => {
     }
   }, [props.route.params])
 
-  const handleGetSubCategories = async (title) => {
-    try {
-      showLoading(true)
-      setSubCategories(allSubCategories[title])
-    } catch (error) {
-      console.log({ message: 'Sub categories not found' }, error)
-    }
-    showLoading(false)
+  const handleGetSubCategories = (title) => {
+    setSubCategories(allSubCategories[title])
   }
 
   const handleCategory = (subCategory) => {
