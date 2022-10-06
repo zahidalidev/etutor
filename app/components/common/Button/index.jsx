@@ -1,5 +1,5 @@
-import { Text, TouchableOpacity } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import { Text, TouchableOpacity } from 'react-native'
 
 import { Colors } from '../../../config/theme'
 import styles from './styles'

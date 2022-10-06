@@ -85,7 +85,7 @@ const HomeScreen = (props) => {
       <View style={styles.container}>
         <LoadingModal show={loading} />
         <View style={styles.header}>
-          <StatusBar translucent backgroundColor='transparent'  style='light' />
+          <StatusBar translucent backgroundColor='transparent' style='light' />
           <View style={styles.headerCol1} ></View>
           <View style={styles.headerCol2} ></View>
           <View style={styles.headerCol3} ></View>

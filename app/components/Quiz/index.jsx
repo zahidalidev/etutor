@@ -1,6 +1,7 @@
-import { Animated, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
+import AnimatedButton from '../AnimatedButton'
 import Button from '../common/Button'
 import { Colors } from '../../config/theme'
 import ProgressBar from '../ProgressBar'
@@ -50,25 +51,12 @@ const Quiz = ({
         </View>
       </View>
     </View>
-    <View style={styles.nextButton}>
-      {showNextButton && (
-        <Animated.View
-          style={{
-            opacity: opacity,
-            transform: [
-              { scale: opacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1] }) },
-            ],
-          }}
-        >
-          <Button
-            name={currentQuestion === 9 ? 'FINISH' : 'NEXT'}
-            handleSubmit={handleNext}
-            height={RFPercentage(6)}
-            fontSize={RFPercentage(2.7)}
-          />
-        </Animated.View>
-      )}
-    </View>
+    <AnimatedButton
+      showNextButton={showNextButton}
+      opacity={opacity}
+      currentQuestion={currentQuestion}
+      handleNext={handleNext}
+    />
   </>
 )
 

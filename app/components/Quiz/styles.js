@@ -36,13 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  nextButton: {
-    position: 'absolute',
-    bottom: RFPercentage(13),
-    left: '6%',
-    right: '6%',
-  },
 })
 
 export default styles
