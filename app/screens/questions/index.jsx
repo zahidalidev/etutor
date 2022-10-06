@@ -12,6 +12,7 @@ import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
 import Quiz from '../../components/Quiz'
 import Result from '../result'
+import { useSelector } from 'react-redux'
 
 import styles from './styles'
 import successBell from '../../../assets/sounds/success_bell-6776.mp3'
@@ -27,6 +28,7 @@ const Questions = (props) => {
   const [showAd, setShowAd] = useState(false)
   const [opacity, setOpacity] = useState(new Animated.Value(0))
   const [currentCategory, setCurrentCategory] = useState({})
+  const allQuestions = useSelector(state => state.questions)
 
   const [result, setResult] = useState({
     correct: 0,
@@ -36,7 +38,7 @@ const Questions = (props) => {
   useEffect(() => {
     if (props.route.params?.subCategory) {
       setSubCurrentCategory(props.route.params.subCategory)
-      handleGetQuestions(props.route.params.subCategory.id)
+      handleGetQuestions(props.route.params.subCategory.title)
       setCurrentCategory(props.route.params.currentCategory)
     }
 
@@ -45,6 +47,16 @@ const Questions = (props) => {
       setShowResult(false)
     }
   }, [props.route.params])
+
+  const handleGetQuestions = async (title) => {
+    try {
+      showLoading(true)
+      setQuestions(allQuestions[title])
+    } catch (error) {
+      console.log({ message: 'Sub categories not found' }, error)
+    }
+    showLoading(false)
+  }
 
   const playSound = async () => {
     const { sound } = await Audio.Sound.createAsync(successBell)
@@ -59,17 +71,6 @@ const Questions = (props) => {
         }
       : undefined
   }, [sound])
-
-  const handleGetQuestions = async (id) => {
-    try {
-      showLoading(true)
-      const data = await fetchQuestions(id)
-      setQuestions(data)
-    } catch (error) {
-      console.log({ message: 'Sub categories not found' }, error)
-    }
-    showLoading(false)
-  }
 
   const handleCheckAnswer = (answerIndex) => {
     const tempQuestion = [...questions]

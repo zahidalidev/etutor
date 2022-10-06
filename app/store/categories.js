@@ -4,9 +4,7 @@ const slice = createSlice({
   name: 'categories',
   initialState: [],
   reducers: {
-    SAVE_CATEGORIES: (state, action) => {
-      state = action.payload.data
-    }
+    SAVE_CATEGORIES: (state, action) => action.payload
   }
 })
 

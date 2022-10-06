@@ -3,35 +3,41 @@ import Constants from 'expo-constants'
 import { Text, View, StatusBar, FlatList, RefreshControl, Image } from 'react-native'
 import { useEffect, useState, useCallback, useRef } from 'react'
 import * as Notifications from 'expo-notifications'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { ADD_QUESTIONS } from '../../store/questions'
+import { ADD_SUB_CATEGORIES } from '../../store/subCategories'
 import CategoryCard from '../../components/CategoryCard'
-import { fetchAllCategories } from '../../api/categories'
+import { fetchAllCategories, fetchQuestions, fetchSubCategories } from '../../api/categories'
 import getPushNotificationsToken from '../../utils/getNotificationToken'
 import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
 import { saveNotificationToken } from '../../api/token'
+import { SAVE_CATEGORIES } from '../../store/categories'
 
 import styles from './styles'
 import logo from '../../../assets/logo.png'
 
 const HomeScreen = (props) => {
-  const [categories, setCategories] = useState([])
   const [loading, showLoading] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const [notification, setNotification] = useState()
   const notificationListener = useRef({})
   const responseListener = useRef({})
+  const dispatch = useDispatch()
+  const categories = useSelector(state => state.categories)
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
-    handleGetAllCategories()
+    if(categories.length === 0) {
+      handleGetAllCategories()
+    }
     setRefreshing(false)
   }, [])
 
   const getNotificationToken = async () => {
     try {
       const token = await getPushNotificationsToken()
-      console.log('token: ', token)
       const body = {
         firebase_token: token,
         device_id: Constants.installationId,
@@ -44,9 +50,17 @@ const HomeScreen = (props) => {
 
   useEffect(() => {
     getNotificationToken()
-    handleGetAllCategories()
     listenPushNotification()
+    if(categories.length === 0) {
+      handleGetAllCategories()
+    }
   }, [])
+
+  useEffect(() => {
+    if(categories.length !== 0) {
+      handleGetSubCategories()
+    }
+  }, [categories])
 
   const listenPushNotification = () => {
     notificationListener.current = Notifications.addNotificationReceivedListener((notification) => {
@@ -67,7 +81,7 @@ const HomeScreen = (props) => {
     try {
       showLoading(true)
       const data = await fetchAllCategories()
-      setCategories(data)
+      dispatch(SAVE_CATEGORIES(data))
     } catch (error) {
       console.log({ message: 'Categories not found' }, error)
     }
@@ -78,6 +92,29 @@ const HomeScreen = (props) => {
     props.navigation.navigate('SubCategories', {
       category,
     })
+  }
+
+  const handleGetSubCategories = async () => {
+    try {
+      categories.forEach(async({ id, title }) => {
+        const data = await fetchSubCategories(id)
+        dispatch(ADD_SUB_CATEGORIES({ title, data }))
+        await handleGetQuestions(data)
+      })
+    } catch (error) {
+      console.log({ message: 'Sub categories not found' }, error)
+    }
+  }
+
+  const handleGetQuestions = async (subCategories) => {
+    try {
+      subCategories.forEach(async({ id, title }) => {
+        const data = await fetchQuestions(id)
+        dispatch(ADD_QUESTIONS({ title, data }))
+      })
+    } catch (error) {
+      console.log({ message: 'Questions not found' }, error)
+    }
   }
 
   return (

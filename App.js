@@ -4,7 +4,7 @@ import { LogBox } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { Provider } from 'react-redux'
 
-import { configureStore } from './app/store/configureStore'
+import configureStore from './app/store/configureStore'
 import Home from './app/screens/homeScreen'
 import Questions from './app/screens/questions'
 import SubCategories from './app/screens/subCategories'

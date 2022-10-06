@@ -2,10 +2,10 @@ import { FontAwesome } from '@expo/vector-icons'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { Text, View, StatusBar, FlatList, TouchableOpacity } from 'react-native'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
 import { Colors } from '../../config/theme'
-import { fetchSubCategories } from '../../api/categories'
 import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
 import SubCategoryCard from '../../components/SubCategoryCard'
@@ -16,11 +16,12 @@ const SubCategories = (props) => {
   const [subCategories, setSubCategories] = useState([])
   const [loading, showLoading] = useState(false)
   const [currentCategory, setCurrentCategory] = useState({})
+  const allSubCategories = useSelector(state => state.subCategories)
 
   useEffect(() => {
     if (props.route.params?.category) {
       setCurrentCategory(props.route.params.category)
-      handleGetSubCategories(props.route.params.category.id)
+      handleGetSubCategories(props.route.params.category.title)
     }
 
     return () => {
@@ -29,11 +30,10 @@ const SubCategories = (props) => {
     }
   }, [props.route.params])
 
-  const handleGetSubCategories = async (id) => {
+  const handleGetSubCategories = async (title) => {
     try {
       showLoading(true)
-      const data = await fetchSubCategories(id)
-      setSubCategories(data)
+      setSubCategories(allSubCategories[title])
     } catch (error) {
       console.log({ message: 'Sub categories not found' }, error)
     }

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const slice = createSlice({
   name: 'subCategories',
-  initialState: [],
+  initialState: {},
   reducers: {
     ADD_SUB_CATEGORIES: (state, action) => {
       state[action.payload.title] = action.payload.data
