@@ -3,7 +3,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 
 const windowWidth = Dimensions.get('window').width
 
-import Colors from '../../config/theme'
+import { Colors } from '../../config/theme'
 
 const styles = StyleSheet.create({
   categContaienr: {

@@ -2,6 +2,8 @@ import { Text, TouchableOpacity } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
 
+import styles from './styles'
+
 const SubCategoryCard = ({ item, handleCategory }) => (
   <TouchableOpacity
     key={item.name}
