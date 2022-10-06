@@ -1,17 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
-import { Colors } from '../config/theme'
+import { StyleSheet } from 'react-native'
 
-const CategoryCard = ({ item, handleCategory }) => (
-  <TouchableOpacity
-    key={item.name}
-    activeOpacity={0.9}
-    onPress={() => handleCategory(item)}
-    style={[styles.categContaienr]}
-  >
-    <Text style={styles.categName}>{item.title}</Text>
-  </TouchableOpacity>
-)
+import { Colors } from '../../config/theme'
 
 const styles = StyleSheet.create({
   categContaienr: {
@@ -41,4 +31,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default CategoryCard
+export default styles
