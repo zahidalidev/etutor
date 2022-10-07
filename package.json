@@ -27,6 +27,7 @@
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.5",
     "firebase": "^9.10.0",
+    "lodash": "^4.17.21",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",

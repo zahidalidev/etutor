@@ -28,10 +28,10 @@ const HomeScreen = (props) => {
   const dispatch = useDispatch()
   const categories = useSelector((state) => state.categories)
 
-  const onRefresh = useCallback(() => {
+  const onRefresh = useCallback(async() => {
     setRefreshing(true)
     if (categories.length === 0) {
-      handleGetAllCategories()
+      await handleGetAllCategories()
     }
     setRefreshing(false)
   }, [])
@@ -80,7 +80,8 @@ const HomeScreen = (props) => {
 
   const handleGetAllCategories = async () => {
     try {
-      showLoading(true)
+      if (!refreshing)
+        showLoading(true)
       const data = await fetchAllCategories()
       dispatch(SAVE_CATEGORIES(data))
     } catch (error) {

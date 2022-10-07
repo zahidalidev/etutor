@@ -1,5 +1,6 @@
 import { Audio } from 'expo-av'
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
+import { isEmpty } from 'lodash'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
 import { Text, View, StatusBar, TouchableOpacity, Vibration, Animated } from 'react-native'
@@ -7,6 +8,7 @@ import { useEffect, useState } from 'react'
 
 import AnimatedButton from '../../components/AnimatedButton'
 import { Colors } from '../../config/theme'
+import { fetchQuestions } from '../../api/categories'
 import { questionBannerId } from '../../config/adIds'
 import Quiz from '../../components/Quiz'
 import Result from '../result'
@@ -35,8 +37,13 @@ const Questions = (props) => {
   useEffect(() => {
     if (props.route.params?.subCategory) {
       setSubCurrentCategory(props.route.params.subCategory)
-      handleGetQuestions(props.route.params.subCategory.title)
+      const { title } = props.route.params.subCategory
+      handleGetQuestions()
       setCurrentCategory(props.route.params.currentCategory)
+
+      console.log('isEmpty(allQuestions[title]): ', isEmpty(allQuestions[title]))
+      if (isEmpty(allQuestions[title]))
+        handleFetchQuestions(props.route.params.subCategory.id)
     }
 
     return () => {
@@ -44,6 +51,19 @@ const Questions = (props) => {
       setShowResult(false)
     }
   }, [props.route.params])
+
+
+  const handleFetchQuestions = async (id) => {
+    try {
+      showLoading(true)
+      const data = await fetchQuestions(id)
+      setQuestions(data)
+    } catch (error) {
+      console.log({ message: 'Sub categories not found' }, error)
+    }
+    showLoading(false)
+  }
+
 
   const handleGetQuestions = (title) => {
     setQuestions(allQuestions[title])

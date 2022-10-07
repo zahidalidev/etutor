@@ -1,4 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons'
+import { isEmpty } from 'lodash'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { Text, View, StatusBar, FlatList, TouchableOpacity } from 'react-native'
 import { useEffect, useState } from 'react'
@@ -22,9 +23,11 @@ const SubCategories = (props) => {
   useEffect(() => {
     if (props.route.params?.category) {
       setCurrentCategory(props.route.params.category)
-      handleGetSubCategories(props.route.params.category.title)
+      const { title } = props.route.params.category
+      handleGetSubCategories(title)
 
-      if (props.route.params.backgroundLoading)
+      console.log('isEmpty(allSubCategories[title]): ', isEmpty(allSubCategories[title]))
+      if (isEmpty(allSubCategories[title]))
         handleFetchSubCategories(props.route.params.category.id)
     }
 
