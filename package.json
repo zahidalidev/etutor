@@ -44,7 +44,8 @@
     "redux": "^4.2.0",
     "styled-components": "^5.3.5",
     "styled-system": "^5.1.5",
-    "expo-sqlite": "~10.3.0"
+    "expo-sqlite": "~10.3.0",
+    "expo-asset": "~8.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

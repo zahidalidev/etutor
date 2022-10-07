@@ -9,6 +9,7 @@ import { cloneDeep } from 'lodash'
 import AnimatedButton from '../../components/AnimatedButton'
 import { Colors } from '../../config/theme'
 import { fetchQuestions } from '../../api/categories'
+import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
 import Quiz from '../../components/Quiz'
 import Result from '../result'
@@ -16,7 +17,6 @@ import { useSelector } from 'react-redux'
 
 import styles from './styles'
 import successBell from '../../../assets/sounds/success_bell-6776.mp3'
-import LoadingModal from '../../components/common/LoadingModal'
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([])
@@ -83,7 +83,7 @@ const Questions = (props) => {
       : undefined
   }, [sound])
 
-  const handleCheckAnswer = (answerIndex) => {
+  const handleCheckAnswer = async (answerIndex) => {
     let tempQuestion = cloneDeep(questions)
     tempQuestion[currentQuestion].sub_quiz_options[answerIndex].currentAnswer =
       tempQuestion[currentQuestion].sub_quiz_options[answerIndex].is_correct === 1 ? 'yes' : 'no'
@@ -98,7 +98,7 @@ const Questions = (props) => {
       duration: 200,
       useNativeDriver: true,
     }).start()
-    tempQuestion[currentQuestion].guess === 'no' ? Vibration.vibrate(1000) : playSound()
+    tempQuestion[currentQuestion].guess === 'no' ? Vibration.vibrate(1000) : await playSound()
   }
 
   const handleNext = () => {
