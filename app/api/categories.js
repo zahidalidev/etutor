@@ -3,11 +3,6 @@ import { firebaseFirestore } from '.'
 
 import { sort } from '../utils/helpers'
 
-
-// Firestore.enablePersistence()
-//   .then((data) => console.log('Offline successfully enable: ', data))
-//   .catch((error) => console.log('Offline error: ', error))
-
 export const fetchAllCategories = async () => {
   const snapshot = await getDocs(collection(firebaseFirestore, 'categories'))
   return snapshot.docs.map((doc) => doc.data())
