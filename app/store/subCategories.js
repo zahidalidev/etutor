@@ -2,13 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const slice = createSlice({
   name: 'subCategories',
-  initialState: {},
+  initialState: [],
   reducers: {
-    ADD_SUB_CATEGORIES: (state, action) => {
-      state[action.payload.title] = action.payload.data
-    }
+    SAVE_SUB_CATEGORIES: (state, action) => action.payload
   }
 })
 
-export const { ADD_SUB_CATEGORIES } = slice.actions
+export const { SAVE_SUB_CATEGORIES } = slice.actions
 export default slice.reducer

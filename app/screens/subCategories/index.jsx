@@ -17,18 +17,16 @@ import styles from './styles'
 const SubCategories = (props) => {
   const [subCategories, setSubCategories] = useState([])
   const [currentCategory, setCurrentCategory] = useState({})
-  const allSubCategories = useSelector(state => state.subCategories)
+  const allSubCategories = useSelector((state) => state.subCategories)
   const [loading, showLoading] = useState(false)
 
   useEffect(() => {
     if (props.route.params?.category) {
       setCurrentCategory(props.route.params.category)
-      const { title } = props.route.params.category
-      handleGetSubCategories(title)
+      const { id } = props.route.params.category
+      handleGetSubCategories(id)
 
-      console.log('isEmpty(allSubCategories[title]): ', isEmpty(allSubCategories[title]))
-      if (isEmpty(allSubCategories[title]))
-        handleFetchSubCategories(props.route.params.category.id)
+      if (allSubCategories.length === 0) handleFetchSubCategories(id)
     }
 
     return () => {
@@ -37,11 +35,11 @@ const SubCategories = (props) => {
     }
   }, [props.route.params])
 
-  const handleGetSubCategories = (title) => {
-    setSubCategories(allSubCategories[title])
+  const handleGetSubCategories = (id) => {
+    setSubCategories(allSubCategories.filter(subCategory => subCategory.quiz_id === id))
   }
 
-  const handleFetchSubCategories = async(id) => {
+  const handleFetchSubCategories = async (id) => {
     try {
       showLoading(true)
       const data = await fetchSubCategories(id)
@@ -56,7 +54,7 @@ const SubCategories = (props) => {
     props.navigation.navigate('Questions', {
       subCategory,
       currentCategory,
-      backgroundLoading: props.route.params.backgroundLoading
+      backgroundLoading: props.route.params.backgroundLoading,
     })
   }
 

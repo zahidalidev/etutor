@@ -1,6 +1,5 @@
 import { Audio } from 'expo-av'
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads'
-import { isEmpty } from 'lodash'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
 import { Text, View, StatusBar, TouchableOpacity, Vibration, Animated } from 'react-native'
@@ -16,6 +15,7 @@ import { useSelector } from 'react-redux'
 
 import styles from './styles'
 import successBell from '../../../assets/sounds/success_bell-6776.mp3'
+import LoadingModal from '../../components/common/LoadingModal'
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([])
@@ -27,7 +27,8 @@ const Questions = (props) => {
   const [showAd, setShowAd] = useState(false)
   const [opacity, setOpacity] = useState(new Animated.Value(0))
   const [currentCategory, setCurrentCategory] = useState({})
-  const allQuestions = useSelector(state => state.questions)
+  const [loading, showLoading] = useState(false)
+  const allQuestions = useSelector((state) => state.questions)
 
   const [result, setResult] = useState({
     correct: 0,
@@ -37,13 +38,11 @@ const Questions = (props) => {
   useEffect(() => {
     if (props.route.params?.subCategory) {
       setSubCurrentCategory(props.route.params.subCategory)
-      const { title } = props.route.params.subCategory
-      handleGetQuestions()
       setCurrentCategory(props.route.params.currentCategory)
+      const { id } = props.route.params.subCategory
+      handleGetQuestions(id)
 
-      console.log('isEmpty(allQuestions[title]): ', isEmpty(allQuestions[title]))
-      if (isEmpty(allQuestions[title]))
-        handleFetchQuestions(props.route.params.subCategory.id)
+      if (allQuestions.length === 0) handleFetchQuestions(id)
     }
 
     return () => {
@@ -51,7 +50,6 @@ const Questions = (props) => {
       setShowResult(false)
     }
   }, [props.route.params])
-
 
   const handleFetchQuestions = async (id) => {
     try {
@@ -64,9 +62,8 @@ const Questions = (props) => {
     showLoading(false)
   }
 
-
-  const handleGetQuestions = (title) => {
-    setQuestions(allQuestions[title])
+  const handleGetQuestions = (id) => {
+    setQuestions(allQuestions.filter(question => question.sub_quiz_id === id))
   }
 
   const playSound = async () => {
@@ -149,6 +146,7 @@ const Questions = (props) => {
 
   return (
     <View style={styles.container}>
+      <LoadingModal show={loading} />
       <StatusBar backgroundColor='transparent' translucent style='light' />
       <View style={styles.header}>
         <View style={styles.pageNavigation}>

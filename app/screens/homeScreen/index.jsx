@@ -5,10 +5,10 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import * as Notifications from 'expo-notifications'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { ADD_QUESTIONS } from '../../store/questions'
-import { ADD_SUB_CATEGORIES } from '../../store/subCategories'
+import { SAVE_QUESTIONS } from '../../store/questions'
+import { SAVE_SUB_CATEGORIES } from '../../store/subCategories'
 import CategoryCard from '../../components/CategoryCard'
-import { fetchAllCategories, fetchQuestions, fetchSubCategories } from '../../api/categories'
+import { fetchAllCategories, fetchAllQuestions, fetchAllSubCategories, fetchQuestions, fetchSubCategories } from '../../api/categories'
 import getPushNotificationsToken from '../../utils/getNotificationToken'
 import LoadingModal from '../../components/common/LoadingModal'
 import { questionBannerId } from '../../config/adIds'
@@ -99,23 +99,19 @@ const HomeScreen = (props) => {
   const handleGetSubCategories = async () => {
     try {
       setBackgroundLoading(true)
-      for (const { id, title } of categories) {
-        const data = await fetchSubCategories(id)
-        dispatch(ADD_SUB_CATEGORIES({ title, data }))
-        await handleGetQuestions(data)
-      }
+      const data = await fetchAllSubCategories()
+      dispatch(SAVE_SUB_CATEGORIES(data))
+      await handleGetQuestions()
     } catch (error) {
       console.log({ message: 'Sub categories not found' }, error)
     }
     setBackgroundLoading(false)
   }
 
-  const handleGetQuestions = async (subCategories) => {
+  const handleGetQuestions = async () => {
     try {
-      for (const { id, title } of subCategories) {
-        const data = await fetchQuestions(id)
-        dispatch(ADD_QUESTIONS({ title, data }))
-      }
+      const data = await fetchAllQuestions()
+      dispatch(SAVE_QUESTIONS(data))
     } catch (error) {
       console.log({ message: 'Questions not found' }, error)
     }
