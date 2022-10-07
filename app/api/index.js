@@ -1,3 +1,22 @@
+// import * as SQLite from "expo-sqlite";
+
+// const openDatabase = () => {
+//   if (Platform.OS === "web") {
+//     return {
+//       transaction: () => {
+//         return {
+//           executeSql: () => {},
+//         };
+//       },
+//     };
+//   }
+
+//   const db = SQLite.openDatabase("db.db");
+//   return db;
+// }
+
+// const db = openDatabase();
+
 import { getAuth } from 'firebase/auth'
 import { getDatabase } from 'firebase/database'
 import { getFirestore, initializeFirestore } from 'firebase/firestore'

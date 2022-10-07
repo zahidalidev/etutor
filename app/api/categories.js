@@ -14,8 +14,20 @@ export const fetchSubCategories = async id => {
   return sort(snapshot.docs)
 }
 
+export const fetchAllSubCategories = async () => {
+  const q = query(collection(firebaseFirestore, 'subCategories'))
+  const snapshot = await getDocs(q)
+  return sort(snapshot.docs)
+}
+
 export const fetchQuestions = async id => {
   const q = query(collection(firebaseFirestore, 'questions'), where('sub_quiz_id', '==', id))
+  const snapshot = await getDocs(q)
+  return sort(snapshot.docs)
+}
+
+export const fetchAllQuestions = async () => {
+  const q = query(collection(firebaseFirestore, 'questions'))
   const snapshot = await getDocs(q)
   return sort(snapshot.docs)
 }
