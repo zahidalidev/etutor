@@ -4,6 +4,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { FontAwesome } from '@expo/vector-icons'
 import { Text, View, StatusBar, TouchableOpacity, Vibration, Animated } from 'react-native'
 import { useEffect, useState } from 'react'
+import { cloneDeep } from 'lodash'
 
 import AnimatedButton from '../../components/AnimatedButton'
 import { Colors } from '../../config/theme'
@@ -63,7 +64,9 @@ const Questions = (props) => {
   }
 
   const handleGetQuestions = (id) => {
-    setQuestions(allQuestions.filter(question => question.sub_quiz_id === id))
+    const tempAllQuestions = cloneDeep(allQuestions)
+    const tempQuestions = tempAllQuestions.filter((ques) => ques.sub_quiz_id === id)
+    setQuestions(tempQuestions)
   }
 
   const playSound = async () => {
@@ -81,12 +84,13 @@ const Questions = (props) => {
   }, [sound])
 
   const handleCheckAnswer = (answerIndex) => {
-    const tempQuestion = [...questions]
+    let tempQuestion = cloneDeep(questions)
     tempQuestion[currentQuestion].sub_quiz_options[answerIndex].currentAnswer =
       tempQuestion[currentQuestion].sub_quiz_options[answerIndex].is_correct === 1 ? 'yes' : 'no'
     tempQuestion[currentQuestion].optionDisable = true
     tempQuestion[currentQuestion].guess =
       tempQuestion[currentQuestion].sub_quiz_options[answerIndex].currentAnswer
+
     setQuestions(tempQuestion)
     setShowNextButton(true)
     Animated.timing(opacity, {
