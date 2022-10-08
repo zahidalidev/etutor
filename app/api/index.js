@@ -15,9 +15,9 @@ if (firebase.apps.length === 0) {
 }
 
 const db = app.firestore()
-db.enablePersistence()
-  .then((data) => console.log('Offline successfully enable: ', data))
-  .catch((error) => console.log('Offline error: ', error))
+// db.enablePersistence()
+//   .then((data) => console.log('Offline successfully enable: ', data))
+//   .catch((error) => console.log('Offline error: ', error))
 
 initializeFirestore(app, { useFetchStraems: false, experimentalForceLongPolling: true })
 
