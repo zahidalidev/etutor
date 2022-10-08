@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     alignItems: 'center',
     width: '100%',
-    marginBottom: RFPercentage(7)
+    marginBottom: RFPercentage(7),
   },
 
   header: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderTopStartRadius: RFPercentage(3.7),
     marginTop: RFPercentage(-4),
     alignItems: 'flex-start',
-
+    justifyContent: 'center'
   },
 
   paginationHeading: {
@@ -34,8 +34,13 @@ const styles = StyleSheet.create({
     paddingBottom: RFPercentage(1),
     flexDirection: 'row',
     alignItems: 'center',
-    width: '57%',
-    justifyContent: 'space-between'
+    justifyContent: 'center',
+  },
+
+  headingContainer: {
+    width: '70%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   heading: {
@@ -47,19 +52,20 @@ const styles = StyleSheet.create({
   pageNumber: {
     fontSize: RFPercentage(2.2),
     fontWeight: '600',
-    color: Colors.primary
+    color: Colors.primary,
   },
 
   navigation: {
     flexDirection: 'row',
     width: RFPercentage(15),
     justifyContent: 'space-evenly',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   backIcon: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '10%'
   },
 
   homeBanner: {
@@ -68,8 +74,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     bottom: 0,
     left: 0,
-    right: 0
-  }
+    right: 0,
+  },
 })
 
 export default styles

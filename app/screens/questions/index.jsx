@@ -157,7 +157,9 @@ const Questions = (props) => {
           <TouchableOpacity style={styles.backIcon} onPress={handleBack}>
             <FontAwesome name='chevron-left' size={RFPercentage(2)} color={Colors.white} />
           </TouchableOpacity>
-          <Text style={styles.heading}>{currentSubCategory.title}</Text>
+          <View style={styles.headingContainer} >
+            <Text style={styles.heading}>{currentSubCategory.title}</Text>
+          </View>
         </View>
       </View>
       {!showResult ? (

@@ -14,18 +14,23 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     backgroundColor: Colors.primary,
-    height: RFPercentage(14),
+    height: RFPercentage(15),
     justifyContent: 'center',
     alignItems: 'flex-start',
     paddingLeft: RFPercentage(3),
   },
 
   pageNavigation: {
-    width: '55%',
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: RFPercentage(2),
+    marginBottom: RFPercentage(1),
+  },
+
+  headingContainer: {
+    width: '75%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   heading: {
@@ -52,6 +57,7 @@ const styles = StyleSheet.create({
     height: RFPercentage(3),
     justifyContent: 'center',
     alignItems: 'center',
+    width: '10%'
   },
 
   rectangleAd: {

@@ -66,15 +66,16 @@ const SubCategories = (props) => {
         <View style={styles.header}></View>
         <View style={styles.pageNavigation}>
           <View style={styles.paginationHeading}>
-            <TouchableOpacity onPress={() => props.navigation.navigate('Home')}>
+            <TouchableOpacity style={styles.backIcon} onPress={() => props.navigation.navigate('Home')}>
               <FontAwesome
                 name='chevron-left'
-                style={styles.backIcon}
                 size={RFPercentage(2)}
                 color={Colors.primary}
               />
             </TouchableOpacity>
-            <Text style={styles.heading}>{currentCategory?.title}</Text>
+            <View style={styles.headingContainer} >
+              <Text style={styles.heading}>{currentCategory?.title}</Text>
+            </View>
           </View>
         </View>
         <FlatList
